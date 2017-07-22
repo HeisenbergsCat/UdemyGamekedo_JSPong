@@ -28,6 +28,7 @@ function GameState() {
     this.scoreReset = function() {
         this.LeftPlayerScore = 0;
         this.RightPlayerScore = 0;
+        isMouseDown = false;
     }
 
     this.printWinMessage = function() {

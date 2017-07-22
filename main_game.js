@@ -5,6 +5,8 @@ var leftPaddle = new Paddle("left", 100, 10);
 var rightPaddle = new Paddle("right", 100, 10);
 var mainGameState = new GameState();
 
+var isMouseDown = false;
+
 const WINNING_SCORE = 3;
 
 //MOUSE MOVEMENT
@@ -23,14 +25,21 @@ function calculateMousePos(evt) {
 
 //ON MOUSECLICK
 function continueGame(evt) {
-    if (mainGameState.showingWinScreen) {
+    if (isMouseDown && mainGameState.showingWinScreen) {
         mainGameState.scoreReset();
         mainGameState.showingWinScreen = false;
     }
 }
 
 function mouseDownTest(evt) {
-    return true;
+    isMouseDown = true;
+}
+
+function drawNet() {
+    for (var i = 0; i < canvas.height; i += 40) {
+        canvasContext.fillStyle = "white";
+        canvasContext.fillRect(canvas.width/2,i,5,5);
+    }
 }
 
 window.onload = function() {
@@ -47,7 +56,7 @@ window.onload = function() {
     testBall.setup();
 
 // INPUT HANDLING
-    canvas.addEventListener('mousedown', continueGame);
+    canvas.addEventListener('mousedown', mouseDownTest);
 
     canvas.addEventListener('mousemove',
         function(evt) {
@@ -59,6 +68,7 @@ window.onload = function() {
 //MAIN DRAWING LOOP
 function drawFrame() {
 
+    continueGame();
     drawBackground();
 
     if (!mainGameState.showingWinScreen) {
@@ -73,6 +83,7 @@ function drawFrame() {
 
 function drawObjects() {
 
+    drawNet();
     testBall.drawBall();
     leftPaddle.drawPaddle();
     rightPaddle.drawPaddle();
