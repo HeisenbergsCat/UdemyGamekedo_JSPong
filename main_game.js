@@ -18,8 +18,8 @@ function calculateMousePos(evt) {
     var mouseY = evt.clientY - rect.top - root.scrollTop;
 
     return {
-        x:mouseX,
-        y:mouseY
+        x: mouseX,
+        y: mouseY
     };
 }
 
@@ -38,30 +38,30 @@ function mouseDownTest(evt) {
 function drawNet() {
     for (var i = 0; i < canvas.height; i += 40) {
         canvasContext.fillStyle = "white";
-        canvasContext.fillRect(canvas.width/2,i,5,5);
+        canvasContext.fillRect(canvas.width / 2, i, 5, 5);
     }
 }
 
 window.onload = function() {
 
-// CANVAS SETUP
+    // CANVAS SETUP
     canvas = document.getElementById("GameCanvas");
     canvasContext = canvas.getContext("2d");
-    var frameRate = 1000/30;
+    var frameRate = 1000 / 30;
     setInterval(drawFrame, frameRate);
 
-//GAME OBJECT INITAL SETUP
+    //GAME OBJECT INITAL SETUP
     rightPaddle.setPaddles();
     leftPaddle.setPaddles();
     testBall.setup();
 
-// INPUT HANDLING
+    // INPUT HANDLING
     canvas.addEventListener('mousedown', mouseDownTest);
 
     canvas.addEventListener('mousemove',
         function(evt) {
             var mousePos = calculateMousePos(evt);
-                leftPaddle.positionY = mousePos.y - (leftPaddle.length/2);
+            leftPaddle.positionY = mousePos.y - (leftPaddle.length / 2);
         });
 }
 
@@ -115,5 +115,5 @@ function updateMovement() {
 function drawBackground() {
 
     canvasContext.fillStyle = "black";
-    canvasContext.fillRect(0,0, canvas.width, canvas.height);
+    canvasContext.fillRect(0, 0, canvas.width, canvas.height);
 }

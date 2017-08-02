@@ -6,8 +6,8 @@ function GameState() {
 
     this.printScores = function() {
         canvasContext.fillStyle = "white";
-        canvasContext.fillText(this.RightPlayerScore, 100,100);
-        canvasContext.fillText(this.LeftPlayerScore, canvas.width - 100,100);
+        canvasContext.fillText(this.RightPlayerScore, 100, 100);
+        canvasContext.fillText(this.LeftPlayerScore, canvas.width - 100, 100);
     }
 
     this.checkEnd = function() {
@@ -15,6 +15,8 @@ function GameState() {
             this.showingWinScreen = true;
         }
     }
+
+
 
     this.printWinner = function() {
         if (this.RightPlayerScore >= WINNING_SCORE) {
